@@ -1,75 +1,87 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
-
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
+import CountryCard from '../../components/CountryCard';
+import SearchBar from '../../components/SearchBar';
+import { fetchAllCountries } from '../../utils/api';
+import { useFavoritesStore } from '../../store/favoritesStore';
 
 export default function HomeScreen() {
+  const [countries, setCountries] = useState<any[]>([]);
+  const [filtered, setFiltered] = useState<any[]>([]);
+  const [search, setSearch] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const { favorites, addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
+
+  useEffect(() => {
+    const load = async () => {
+      setLoading(true);
+      setError('');
+      try {
+        const data = await fetchAllCountries();
+        setCountries(data);
+        setFiltered(data);
+      } catch (e) {
+        setError('Ülkeler yüklenirken hata oluştu.');
+      } finally {
+        setLoading(false);
+      }
+    };
+    load();
+  }, []);
+
+  useEffect(() => {
+    if (!search) {
+      setFiltered(countries);
+    } else {
+      setFiltered(
+        countries.filter((c) =>
+          c.name.common.toLowerCase().includes(search.toLowerCase())
+        )
+      );
+    }
+  }, [search, countries]);
+
+  const handleFavorite = useCallback((country: any) => {
+    if (isFavorite(country.cca3)) {
+      removeFavorite(country.cca3);
+    } else {
+      addFavorite({
+        cca3: country.cca3,
+        name: country.name.common,
+        flag: country.flags?.png || country.flags?.svg || '',
+      });
+    }
+  }, [addFavorite, removeFavorite, isFavorite]);
+
+  if (loading) {
+    return <ActivityIndicator size="large" style={{ flex: 1, marginTop: 40 }} />;
+  }
+  if (error) {
+    return <Text style={{ color: 'red', textAlign: 'center', marginTop: 40 }}>{error}</Text>;
+  }
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
+    <View style={{ flex: 1 }}>
+      <SearchBar value={search} onChangeText={setSearch} />
+      {filtered.length === 0 ? (
+        <Text style={{ textAlign: 'center', marginTop: 40 }}>Ülke bulunamadı.</Text>
+      ) : (
+        <FlatList
+          data={filtered}
+          keyExtractor={(item) => item.cca3}
+          renderItem={({ item }) => (
+            <CountryCard
+              name={item.name.common}
+              flag={item.flags?.png || item.flags?.svg || ''}
+              isFavorite={isFavorite(item.cca3)}
+              onPress={() => {}}
+              onToggleFavorite={() => handleFavorite(item)}
+            />
+          )}
         />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+      )}
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
-  },
-});
