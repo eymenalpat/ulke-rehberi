@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, FlatList, ActivityIndicator, TouchableOpacity } from 'react-native';
-import CountryCard from '../../components/CountryCard';
-import SearchBar from '../../components/SearchBar';
+import CountryCard from '../../components/organisms/CountryCard';
+import SearchBar from '../../components/molecules/SearchBar';
 import { fetchAllCountries } from '../../utils/api';
 import { useFavoritesStore } from '../../store/favoritesStore';
 import { useRouter } from 'expo-router';

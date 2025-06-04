@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useFavoritesStore } from '../../store/favoritesStore';
+import CountryCard from '../../components/organisms/CountryCard';
 
 // Örnek turistik yer ve notlar
 const countryTravelInfo: Record<string, { place: string; note: string }> = {

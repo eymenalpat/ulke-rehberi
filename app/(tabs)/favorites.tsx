@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
-import CountryCard from '../../components/CountryCard';
+import CountryCard from '../../components/organisms/CountryCard';
 import { useFavoritesStore } from '../../store/favoritesStore';
 import { useRouter } from 'expo-router';
 
