@@ -6,7 +6,7 @@
 const tintColorLight = '#0a7ea4';
 const tintColorDark = '#fff';
 
-const colors = {
+const Colors = {
   primary: '#4F8EF7',
   secondary: '#F7B801',
   background: '#F5F7FA',
@@ -20,4 +20,4 @@ const colors = {
   shadow: 'rgba(79, 142, 247, 0.08)',
 };
 
-export default colors;
+export default Colors;

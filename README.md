@@ -1,7 +1,7 @@
 # Dünya Rehberi Mobil Uygulaması
 
 ## Proje Açıklaması
-Dünya Rehberi, dünya üzerindeki ülkelerin güncel bilgilerini kullanıcıya sunan, hem görsel (bayrak) hem de metinsel içerik sağlayan bir mobil uygulamadır. Kullanıcılar ülkeleri listeleyebilir, arayabilir, detaylarını görebilir ve favorilerine ekleyebilir. Ayrıca favori ülkeler için gezginlere yönelik kısa notlar ve öneriler de sunulmaktadır. Uygulama, Expo ve React Native ile geliştirilmiş olup, modern ve kullanıcı dostu bir arayüze sahiptir.
+Dünya Rehberi, dünya üzerindeki ülkelerin güncel bilgilerini kullanıcıya sunan, hem görsel (bayrak) hem de metinsel içerik sağlayan bir mobil uygulamadır. Kullanıcılar ülkeleri listeleyebilir, arayabilir, detaylarını görebilir ve favorilerine ekleyebilir. Ayrıca favori ülkeler için gezginlere yönelik kısa notlar ve öneriler de sunulmaktadır. Uygulama, Expo ve React Native ile geliştirilmiş olup, modern ve kullanıcı dostu bir arayüze sahiptir. Bu uygulumayı geliştirirken üretken yapay zeka(üyz) araçlarından faydalandım. Üretken yapay zekaya direkt olarak uygulamaya şunu yap, bunu istiyorum vb. diyerek uygulamayı ona yaptırmak yerine yönlendirerek bir "araç" olarak kullandım. Tıpkı gerçek hayattaki meslek hayatımız gibi.
 
 ## Kullanılan API
 Tüm ülke verileri [REST Countries API](https://restcountries.com/) üzerinden çekilmektedir. API'den alınan bilgiler şunlardır:
@@ -54,7 +54,7 @@ API Örnekleri:
 ## Kurulum ve Çalıştırma
 1. Bu repoyu klonlayın:
    ```bash
-   git clone https://github.com/kullaniciadi/ulke-rehberi.git
+   git clone https://github.com/eymenalpat/ulke-rehberi.git
    cd ulke-rehberi
    ```
 2. Bağımlılıkları yükleyin:
@@ -72,4 +72,4 @@ Pull request ve issue açarak katkıda bulunabilirsiniz.
 
 ---
 
-**Hazırlayan:** [Senin Adın]
+**Hazırlayan:** [Eymen Alpat]
