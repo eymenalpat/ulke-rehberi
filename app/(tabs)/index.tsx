@@ -4,6 +4,7 @@ import CountryCard from '../../components/CountryCard';
 import SearchBar from '../../components/SearchBar';
 import { fetchAllCountries } from '../../utils/api';
 import { useFavoritesStore } from '../../store/favoritesStore';
+import { useRouter } from 'expo-router';
 
 export default function HomeScreen() {
   const [countries, setCountries] = useState<any[]>([]);
@@ -13,6 +14,7 @@ export default function HomeScreen() {
   const [error, setError] = useState('');
 
   const { favorites, addFavorite, removeFavorite, isFavorite } = useFavoritesStore();
+  const router = useRouter();
 
   useEffect(() => {
     const load = async () => {
@@ -76,7 +78,7 @@ export default function HomeScreen() {
               name={item.name.common}
               flag={item.flags?.png || item.flags?.svg || ''}
               isFavorite={isFavorite(item.cca3)}
-              onPress={() => {}}
+              onPress={() => router.push({ pathname: '/detail', params: { code: item.cca3 } })}
               onToggleFavorite={() => handleFavorite(item)}
             />
           )}
