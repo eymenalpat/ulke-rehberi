@@ -31,15 +31,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: 'Ülkeler',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Kullanım',
-          tabBarIcon: ({ color }) => <Ionicons name="help-circle" size={28} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -58,6 +51,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="airplane" size={size} color={color} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="explore"
+        options={{
+          title: 'Kullanım',
+          tabBarIcon: ({ color }) => <Ionicons name="help-circle" size={28} color={color} />,
         }}
       />
     </Tabs>
