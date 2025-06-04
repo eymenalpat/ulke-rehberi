@@ -38,8 +38,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Kullanım',
+          tabBarIcon: ({ color }) => <Ionicons name="help-circle" size={28} color={color} />,
         }}
       />
       <Tabs.Screen
@@ -48,6 +48,15 @@ export default function TabLayout() {
           title: 'Favoriler',
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="star" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="travel"
+        options={{
+          title: 'Gezi Notları',
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="airplane" size={size} color={color} />
           ),
         }}
       />
