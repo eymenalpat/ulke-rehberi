@@ -19,8 +19,15 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack
+        screenOptions={{
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerStyle: { backgroundColor: '#f7f7f7' },
+          headerTitleStyle: { fontWeight: 'bold', fontSize: 20 },
+        }}
+      >
+        <Stack.Screen name="(tabs)" options={{ headerTitle: 'Dünya Rehberi' }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />
