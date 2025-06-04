@@ -1,50 +1,75 @@
-# Welcome to your Expo app 👋
+# Dünya Rehberi Mobil Uygulaması
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Proje Açıklaması
+Dünya Rehberi, dünya üzerindeki ülkelerin güncel bilgilerini kullanıcıya sunan, hem görsel (bayrak) hem de metinsel içerik sağlayan bir mobil uygulamadır. Kullanıcılar ülkeleri listeleyebilir, arayabilir, detaylarını görebilir ve favorilerine ekleyebilir. Ayrıca favori ülkeler için gezginlere yönelik kısa notlar ve öneriler de sunulmaktadır. Uygulama, Expo ve React Native ile geliştirilmiş olup, modern ve kullanıcı dostu bir arayüze sahiptir.
 
-## Get started
+## Kullanılan API
+Tüm ülke verileri [REST Countries API](https://restcountries.com/) üzerinden çekilmektedir. API'den alınan bilgiler şunlardır:
+- Ülke adı
+- Bayrak
+- Ülke kodu
+- Başkent
+- Nüfus
+- Bölge
+- Para birimi
+- Konuşulan diller
 
-1. Install dependencies
+API Örnekleri:
+- Tüm ülkeler: `https://restcountries.com/v3.1/all?fields=name,flags,cca3,capital,population,region`
+- Ülke detayı: `https://restcountries.com/v3.1/alpha/{code}`
 
+## Uygulamanın Nasıl Çalıştığı
+
+### 1. Ülkeler Listesi
+- Ana ekranda tüm ülkeler bayrak ve isimleriyle listelenir.
+- Arama alanı ile ülke ismine göre filtreleme yapılabilir.
+- Her ülke kartında favori ekle/çıkar butonu bulunur.
+- Bir ülkeye tıklandığında detay ekranına geçiş yapılır.
+
+### 2. Detay Ekranı
+- Seçilen ülkenin başkenti, nüfusu, bölgesi, para birimi ve konuşulan dilleri gösterilir.
+- Ülkenin bayrağı büyük olarak görüntülenir.
+- Favori ekleme/çıkarma işlemi yapılabilir.
+
+### 3. Favoriler
+- Kullanıcı favorilere eklediği ülkeleri ayrı bir sekmede görebilir.
+- Favori ülkelerden detay ekranına geçiş yapılabilir.
+
+### 4. Gezi Notları
+- Favorilere eklenen bazı ülkeler için gezginlere yönelik kısa bilgiler (en turistik yer, kısa not) gösterilir.
+- Hangi ülkeler için bilgi olduğu kullanım sekmesinde belirtilmiştir.
+
+### 5. Kullanım Rehberi
+- Uygulamanın nasıl kullanılacağına dair açıklamalar ve ipuçları bu sekmede yer alır.
+
+### 6. Kullanıcı Geri Bildirimleri
+- Yükleniyor göstergesi ve hata mesajları ile kullanıcı bilgilendirilir.
+- Boş liste durumunda bilgilendirici mesajlar gösterilir.
+
+## Atomic Design Component Yapısı
+- **/components/atoms:** Temel, küçük ve tekrar kullanılabilir bileşenler (ör. Icon, Text)
+- **/components/molecules:** Birkaç atomun birleşiminden oluşan bileşenler (ör. SearchBar)
+- **/components/organisms:** Moleküllerin birleşimiyle oluşan daha büyük bileşenler (ör. CountryCard)
+
+## Kurulum ve Çalıştırma
+1. Bu repoyu klonlayın:
+   ```bash
+   git clone https://github.com/kullaniciadi/ulke-rehberi.git
+   cd ulke-rehberi
+   ```
+2. Bağımlılıkları yükleyin:
    ```bash
    npm install
    ```
-
-2. Start the app
-
+3. Expo geliştirme sunucusunu başlatın:
    ```bash
    npx expo start
    ```
+4. QR kodu Expo Go uygulaması ile okutun veya simülatörde açın.
 
-In the output, you'll find options to open the app in a
+## Katkı
+Pull request ve issue açarak katkıda bulunabilirsiniz.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Hazırlayan:** [Senin Adın]
